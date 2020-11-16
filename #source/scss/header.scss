@@ -1,0 +1,222 @@
+$j: center;
+$c: center;
+$w: wrap;
+
+@mixin jcw($j, $c, $w) {
+  display: flex;
+  justify-content: $j;
+  align-items: $c;
+  flex-wrap: $w;
+}
+.header {
+	&__body {
+		@include jcw($j, $c, nowrap);
+		padding: 30px 0;
+		p {
+			@include jcw(none, $c, $w);
+			font-size: 12px;
+			line-height: 100%;
+			text-align: center;
+			color: #000;
+		}
+		a {
+			line-height: 100%;
+			color: #000;
+		}
+	}
+	&__left {
+		@include jcw($j, $c, nowrap);
+	}
+	&__phone {
+		p {
+			&:first-of-type,
+			&:last-of-type {
+				line-height: 100%;
+			}
+			&:nth-of-type(2) {
+				padding: 7px 0 10px 0;
+			}
+		}
+	}
+	&__location {
+		margin-left: 109px;
+		p {
+			@include jcw(space-between, $c, nowrap);
+			width: 100%;
+			max-width: 176px;
+			font-size: 12px;
+			line-height: 100%;
+			color: #000;
+			span {
+				text-decoration-line: underline;
+				cursor: pointer;
+				margin-left: 10px;
+				&::after {
+					content: url('/img/vector.svg');
+					margin-left: 7px;
+				}
+			}
+		}
+	}
+	&__logo {
+		width: 188px;
+		margin: 0 8rem 0 16rem;
+		@include jcw($j, $c, $w);
+		p {
+			padding-top: 12px;
+			font-size: 13.5px;
+		}
+	}
+	&__right {
+		@include jcw($j, $c, nowrap);
+	}
+	&__search {
+		@include jcw(flex-end, $c, $w);
+		width: 296px;
+		height: 52px;
+		background: #F2F2F2;
+		border-radius: 2px;
+		position: relative;
+		input {
+			width: 100%;
+			background: none;
+			padding: 20px;
+			position: absolute;
+		}
+		button {
+			background: url('/img/search.svg');
+			background-size: 100%;
+			width: 15.31px;
+			height: 15.31px;
+			margin-right: 18.69px;
+			position: relative;
+		}
+	}
+	&__icons {
+		a {
+			position: relative;
+			&:first-of-type {
+				margin-left: 40px;
+			}
+			&:nth-of-type(2) {
+				margin-left: 36px;
+			}
+			&:nth-of-type(3) {
+				margin-left: 30px;
+				span {
+					margin-left: -6px;
+				}
+			}
+			&:last-of-type {
+				margin-left: 32px;
+				span {
+					margin-left: -8px;
+				}
+			}
+			span {
+				position: absolute;
+				width: 18px;
+				height: 18px;
+				background: #009B77;
+				border-radius: 50%;
+				font-weight: bold;
+				font-size: 11px;
+				position: absolute;
+				color: #fff;
+				text-align: center;
+				margin-top: -3px;
+			}
+		}
+	}
+	&__menu {
+		background: rgba(0, 155, 119, 0.06);
+		ul {
+			@include jcw(space-between, $c, $w);
+			height: 74px;
+			padding: 0 6rem;
+			li {
+				@include jcw($j, $c, $w);
+				height: 100%;
+				border: 2px solid transparent;
+				cursor: pointer;
+				&:hover {
+					border-top: 2px solid;
+					@extend %transition;
+				}
+				&:active,
+				&:focus {
+					a {
+						@extend %aLink;
+					}
+				}
+				a {
+					font-weight: 600;
+					font-size: 14px;
+					line-height: 17px;
+					text-transform: uppercase;
+					color: #000;
+				}
+			}
+		}
+	}
+}
+@media (max-width: 1918px) {
+	.header__logo {
+		margin: 0 auto;
+	}
+}
+@media (max-width: 1650px) {
+	.header__location {
+    	margin-left: 2rem;
+	}
+}
+@media (max-width: 1452px) {
+	.container {
+	    padding: 0 5rem !important;
+	}
+	.header__left,
+	.header__right {
+    	flex-wrap: wrap;
+	}
+	.header__location,
+	.header__icons {
+		margin-top: 1rem;
+	}
+}
+@media (max-width: 1200px) {
+	.header__left {
+		justify-content: left;
+	}
+	.header__right {
+		justify-content: flex-end;
+	}
+	.header__menu ul {
+		padding: 0;
+	}
+}
+@media (max-width: 992px) {
+	.container {
+    	padding: 0 2rem !important;
+	}
+}
+@media (max-width: 767px) {
+	.header__body {
+		flex-wrap: wrap;
+		p {
+			@include jcw($j, $c, $w);
+		}
+	}
+	.menu {
+		display: none !important;
+	}
+	.header__left,
+	.header__right {
+		justify-content: center;
+	}
+	.header__icons a:first-of-type {
+    	margin: 0;
+	}
+	.header__logo {
+    	margin: 2rem auto;
+	}
+}
